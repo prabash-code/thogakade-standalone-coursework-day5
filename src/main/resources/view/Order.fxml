@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderController.OrderFormController">
+<AnchorPane prefHeight="425.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderController.OrderFormController">
    <children>
       <Label layoutX="272.0" layoutY="27.0" text="ORDER">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
+      <Label layoutX="64.0" layoutY="295.0" text="Order ID :" />
+      <Label layoutX="64.0" layoutY="334.0" text="Order Date :" />
+      <Label layoutX="336.0" layoutY="295.0" text="Customer ID :" />
+      <JFXTextField fx:id="txtOrderId" layoutX="137.0" layoutY="283.0" />
+      <JFXTextField fx:id="txtCustomerId" layoutX="426.0" layoutY="283.0" />
+      <TableView fx:id="tableOrder" layoutX="175.0" layoutY="69.0" prefHeight="200.0" prefWidth="268.0">
+        <columns>
+          <TableColumn fx:id="colOrderId" prefWidth="75.0" text="Order ID" />
+          <TableColumn fx:id="colOrderDate" prefWidth="112.800048828125" text="Order Date" />
+            <TableColumn fx:id="colCustId" prefWidth="79.199951171875" text="Cust ID" />
+        </columns>
+      </TableView>
+      <DatePicker fx:id="date" layoutX="137.0" layoutY="330.0" />
+      <JFXButton fx:id="btnClear" layoutX="535.0" layoutY="378.0" onAction="#clearOnAction" text="Clear" />
+      <JFXButton fx:id="btnUpdate" layoutX="483.0" layoutY="378.0" onAction="#updateOnAction" text="Update" />
+      <JFXButton fx:id="btnDelete" layoutX="431.0" layoutY="378.0" onAction="#deleteOnAction" text="Delete" />
+      <JFXButton fx:id="btnAdd" layoutX="382.0" layoutY="378.0" onAction="#addOnAction" text="Add" />
+      <JFXButton fx:id="btnView" layoutX="330.0" layoutY="378.0" onAction="#viewOnAction" text="view" />
    </children>
 </AnchorPane>

@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.itemController.ItemFormController">
+<AnchorPane prefHeight="550.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.itemController.ItemFormController">
    <children>
-      <Label layoutX="248.0" layoutY="32.0" text="ITEM">
+      <Label layoutX="345.0" layoutY="37.0" text="ITEM">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
+      <Label layoutX="62.0" layoutY="448.0" text="Pack Size :" />
+      <Label layoutX="358.0" layoutY="369.0" text="QTY On Hand :" />
+      <Label layoutX="62.0" layoutY="330.0" text="Item Code :" />
+      <Label layoutX="62.0" layoutY="365.0" text="Description :" />
+      <JFXButton fx:id="btnView" layoutX="429.0" layoutY="502.0" onAction="#viewOnAction" text="View" />
+      <JFXButton fx:id="btnAdd" layoutX="481.0" layoutY="502.0" onAction="#addOnAction" text="Add" />
+      <JFXButton fx:id="btnUpdate" layoutX="527.0" layoutY="502.0" onAction="#updateOnAction" text="Update" />
+      <JFXButton fx:id="btnDelete" layoutX="582.0" layoutY="502.0" onAction="#deleteOnAction" text="Delete" />
+      <JFXButton fx:id="btnClear" layoutX="642.0" layoutY="502.0" onAction="#clearOnAction" text="Clear" />
+      <TableView fx:id="tableItem" layoutX="152.0" layoutY="105.0" prefHeight="200.0" prefWidth="439.0">
+        <columns>
+          <TableColumn fx:id="colItemCode" prefWidth="64.0" text="Item code" />
+          <TableColumn fx:id="colDescription" prefWidth="168.80006408691406" text="Description" />
+            <TableColumn fx:id="colPackSize" prefWidth="71.20001220703125" text="Pack Size" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="56.7999267578125" text="Unit Price" />
+            <TableColumn fx:id="colQTYOnHand" prefWidth="75.99998779296874" text="Qty On Hand" />
+        </columns>
+      </TableView>
+      <Label layoutX="362.0" layoutY="335.0" text="Unit Price :" />
+      <JFXTextField fx:id="txtItemCode" layoutX="135.0" layoutY="318.0" />
+      <JFXTextField fx:id="txtUnitPrice" layoutX="432.0" layoutY="318.0" />
+      <JFXTextField fx:id="txtQTYOnHand" layoutX="451.0" layoutY="352.0" />
+      <JFXTextField fx:id="txtPackSize" layoutX="135.0" layoutY="435.0" />
+      <TextArea fx:id="txtDescription" layoutX="135.0" layoutY="365.0" prefHeight="62.0" prefWidth="194.0" />
    </children>
 </AnchorPane>

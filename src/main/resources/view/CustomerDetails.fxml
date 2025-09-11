@@ -1,16 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerDetailsController.CustomerDetailsFormController">
+<AnchorPane prefHeight="609.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customerDetailsController">
    <children>
-      <Label layoutX="212.0" layoutY="29.0" text="CUSTOMER DETAILS">
+      <Label layoutX="298.0" layoutY="25.0" text="CUSTOMER DETAILS">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
+      <TableView fx:id="tableCustomer" layoutX="78.0" layoutY="117.0" prefHeight="200.0" prefWidth="730.0">
+        <columns>
+          <TableColumn fx:id="colCustId" prefWidth="75.0" text="Cust Id" />
+          <TableColumn fx:id="colCustTitle" prefWidth="75.0" text="Cust Title" />
+            <TableColumn fx:id="colCustName" prefWidth="75.0" text="Cust Name" />
+            <TableColumn fx:id="colCustDOB" prefWidth="75.0" text="DOB" />
+            <TableColumn fx:id="colCustSalary" prefWidth="75.0" text="Salary" />
+            <TableColumn fx:id="colCustAddress" prefWidth="146.39999389648438" text="Address" />
+            <TableColumn fx:id="colCustCity" prefWidth="64.79998779296875" text="City" />
+            <TableColumn fx:id="colCustProvince" prefWidth="68.0" text="Province" />
+            <TableColumn fx:id="ColcustPostalCode" prefWidth="75.199951171875" text="PostalCode" />
+        </columns>
+      </TableView>
+      <Label layoutX="52.0" layoutY="345.0" text="Customer ID :" />
+      <Label layoutX="50.0" layoutY="388.0" prefHeight="18.0" prefWidth="29.0" text="Title :" />
+      <Label layoutX="46.0" layoutY="423.0" text="Name :" />
+      <Label layoutX="391.0" layoutY="358.0" text="City :" />
+      <Label layoutX="395.0" layoutY="445.0" text="Postal Code :" />
+      <Label layoutX="50.0" layoutY="467.0" text="DOB :" />
+      <Label layoutX="395.0" layoutY="397.0" text="Province :" />
+      <Label layoutX="46.0" layoutY="515.0" text="Salary :" />
+      <JFXTextField fx:id="txtId" layoutX="134.0" layoutY="332.0" />
+      <JFXComboBox fx:id="cmbTitle" layoutX="96.0" layoutY="383.0" />
+      <JFXTextField fx:id="txtName" layoutX="96.0" layoutY="419.0" />
+      <DatePicker fx:id="dob" layoutX="96.0" layoutY="463.0" />
+      <JFXTextField fx:id="txtSalary" layoutX="96.0" layoutY="498.0" />
+      <Label layoutX="41.0" layoutY="560.0" text="Address :" />
+      <TextArea fx:id="txtAddress" layoutX="113.0" layoutY="546.0" prefHeight="46.0" prefWidth="200.0" />
+      <JFXTextField fx:id="txtCity" layoutX="435.0" layoutY="354.0" />
+      <JFXComboBox fx:id="cmbProvince" layoutX="475.0" layoutY="384.0" />
+      <JFXTextField fx:id="txtPostalCode" layoutX="475.0" layoutY="432.0" />
+      <JFXButton fx:id="btnDelete" layoutX="617.0" layoutY="547.0" onAction="#deleteOnAction" text="Delete" />
+      <JFXButton fx:id="btnAdd" layoutX="544.0" layoutY="547.0" onAction="#AddOnAction" text="Add" />
+      <JFXButton fx:id="btnUpdate" layoutX="691.0" layoutY="547.0" onAction="#updateOnAction" text="Update" />
+      <JFXButton fx:id="btnClear" layoutX="757.0" layoutY="548.0" onAction="#clearOnAction" text="Clear" />
+      <JFXButton fx:id="btnView" layoutX="477.0" layoutY="547.0" onAction="#viewOnAction" text="View" />
    </children>
 </AnchorPane>
