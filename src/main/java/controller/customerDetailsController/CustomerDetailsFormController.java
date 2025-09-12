@@ -134,11 +134,28 @@ public class CustomerDetailsFormController implements Initializable {
         CustomerDetailsService customerDetailsService=new CustomerDetailsController();
         customerDetailsService.delete(id);
         viewOnAction(event);
+        clearOnAction(event);
 
     }
 
     @FXML
     void updateOnAction(ActionEvent event) {
+        CustomerDetailsService customerDetailsService = new CustomerDetailsController();
+
+        CustomerDetails customerDetails = new CustomerDetails(
+                txtId.getText(),
+                cmbTitle.getValue().toString(),
+                txtName.getText(),
+                dob.getValue().toString(),
+                Double.parseDouble(txtSalary.getText()),
+                txtAddress.getText(),
+                txtCity.getText(),
+                cmbProvince.getValue().toString(),
+                Integer.parseInt(txtPostalCode.getText())
+        );
+        customerDetailsService.update(customerDetails);
+        viewOnAction(event);
+        clearOnAction(event);
 
     }
 

@@ -75,5 +75,25 @@ public void delete(String id){
         throw new RuntimeException(e);
     }
 }
+public void update(CustomerDetails customerDetails){
+    try {
+        Connection connection=DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("update customer set CustTitle=?,CustName=?,DOB=?,salary=?,CustAddress=?,City=?,Province=?,PostalCode=? where CustID=?;");
+        preparedStatement.setObject(1,customerDetails.getTitle());
+        preparedStatement.setObject(2,customerDetails.getName());
+        preparedStatement.setObject(3,customerDetails.getDate());
+        preparedStatement.setObject(4,customerDetails.getSalary());
+        preparedStatement.setObject(5,customerDetails.getAddress());
+        preparedStatement.setObject(6,customerDetails.getCity());
+        preparedStatement.setObject(7,customerDetails.getProvince());
+        preparedStatement.setObject(8,customerDetails.getPostalcode());
+        preparedStatement.setObject(9,customerDetails.getId());
+
+        preparedStatement.executeUpdate();
+
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
 
 }
