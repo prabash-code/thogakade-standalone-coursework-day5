@@ -47,7 +47,19 @@ public class OrderController implements OrderService {
         }
     }
 
+    @Override
     public void update(Orders orders) {
+        try {
+            Connection connection=DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("update orders set CustID=?,OrderDate=? where OrderID=? ;");
+            preparedStatement.setObject(1,orders.getCustId());
+            preparedStatement.setObject(2,orders.getDate());
+            preparedStatement.setObject(3,orders.getOrderId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void delete(String id) {

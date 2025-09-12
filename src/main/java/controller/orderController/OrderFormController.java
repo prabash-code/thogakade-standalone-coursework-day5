@@ -35,6 +35,15 @@ public class OrderFormController implements Initializable {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        Orders orders=new Orders(
+                txtOrderId.getText(),
+                date.getValue().toString(),
+                txtCustomerId.getText()
+        );
+        OrderService orderService=new OrderController();
+        orderService.update(orders);
+        viewOnAction(actionEvent);
+        clearOnAction(actionEvent);
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
