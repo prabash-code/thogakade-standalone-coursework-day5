@@ -49,16 +49,40 @@ public class ItemFormController implements Initializable {
 
         itemService.add(item);
         viewOnAction(actionEvent);
+        clearOnAction(actionEvent);
 
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        ItemControllrer itemService=new ItemControllrer();
+        Item item=new Item(
+                txtItemCode.getText(),
+                txtDescription.getText(),
+                txtPackSize.getText(),
+                Double.parseDouble(txtUnitPrice.getText()),
+                Integer.parseInt(txtQTYOnHand.getText())
+        );
+
+        itemService.update(item);
+        viewOnAction(actionEvent);
+        clearOnAction(actionEvent);
+
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
+        String id=txtItemCode.getText();
+        ItemService itemService=new ItemControllrer();
+        itemService.delete(id);
+        viewOnAction(actionEvent);
+        clearOnAction(actionEvent);
     }
 
     public void clearOnAction(ActionEvent actionEvent) {
+        txtDescription.setText(null);
+        txtItemCode.setText(null);
+        txtPackSize.setText(null);
+        txtUnitPrice.setText(null);
+        txtQTYOnHand.setText(null);
 
     }
 

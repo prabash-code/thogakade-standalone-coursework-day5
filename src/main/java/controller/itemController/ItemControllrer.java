@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 public class ItemControllrer implements ItemService{
 
+    @Override
     public ObservableList<Item> view() {
         ObservableList<Item> itemList= FXCollections.observableArrayList();
         try {
@@ -55,10 +56,33 @@ public class ItemControllrer implements ItemService{
 
     }
 
-    public void update() {
+    @Override
+    public void update(Item item) {
+        try {
+            Connection connection=DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("update item set Description =?,PackSize=?,UnitPrice=?,QtyOnHand=? where ItemCode=?;");
+            preparedStatement.setObject(1,item.getDescription());
+            preparedStatement.setObject(2,item.getPackSize());
+            preparedStatement.setObject(3,item.getUnitPrice());
+            preparedStatement.setObject(4,item.getQty());
+            preparedStatement.setObject(5,item.getItemCode());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void delete() {
+    @Override
+    public void delete(String id) {
+        try {
+            Connection connection=DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from item where ItemCode=?;");
+            preparedStatement.setObject(1,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
