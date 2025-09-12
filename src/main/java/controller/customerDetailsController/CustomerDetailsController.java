@@ -52,6 +52,7 @@ public class CustomerDetailsController implements CustomerDetailsService{
             preparedStatement.setObject(3,customerDetails.getName());
             preparedStatement.setObject(4,customerDetails.getDate());
             preparedStatement.setObject(5,customerDetails.getSalary());
+
             preparedStatement.setObject(6,customerDetails.getAddress());
             preparedStatement.setObject(7,customerDetails.getCity());
             preparedStatement.setObject(8,customerDetails.getProvince());

@@ -66,6 +66,18 @@ public class OrderDetailsController implements OrderDetailsService{
         }
 
     }
-    public void delete(String id){}
+    public void delete(String id1,String id2){
+        try {
+            Connection connection=DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from orderdetail where OrderID=? and ItemCode=?;");
+            preparedStatement.setObject(1,id1);
+            preparedStatement.setObject(2,id2);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }

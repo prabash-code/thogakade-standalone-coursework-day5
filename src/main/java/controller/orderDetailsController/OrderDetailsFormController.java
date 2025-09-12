@@ -29,6 +29,8 @@ public class OrderDetailsFormController implements Initializable {
     public JFXButton btnView;
     public TableColumn colQty;
 
+    OrderDetailsService orderDetailsService=new OrderDetailsController();
+
     public void clearOnAction(ActionEvent actionEvent) {
         txtDiscount.setText(null);
         txtOrderQTY.setText(null);
@@ -43,7 +45,7 @@ public class OrderDetailsFormController implements Initializable {
                 Integer.parseInt(txtOrderQTY.getText()),
                 Integer.parseInt(txtDiscount.getText())
         );
-        OrderDetailsService orderDetailsService=new OrderDetailsController();
+
         orderDetailsService.update(orderDetails);
         viewOnAction(actionEvent);
         clearOnAction(actionEvent);
@@ -51,6 +53,12 @@ public class OrderDetailsFormController implements Initializable {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
+        String id1=txtOrderID.getText();
+        String id2=txtItemCode.getText();
+        orderDetailsService.delete(id1,id2);
+        viewOnAction(actionEvent);
+        clearOnAction(actionEvent);
+
     }
 
     public void addOnAction(ActionEvent actionEvent) {
