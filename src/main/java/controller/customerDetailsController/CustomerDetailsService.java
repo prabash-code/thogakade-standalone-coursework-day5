@@ -1,4 +1,8 @@
 package controller.customerDetailsController;
 
+import javafx.collections.ObservableList;
+import model.CustomerDetails;
+
 public interface CustomerDetailsService {
+    public ObservableList<CustomerDetails> view();
 }

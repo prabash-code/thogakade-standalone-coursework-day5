@@ -28,7 +28,7 @@
             <TableColumn fx:id="colCustAddress" prefWidth="146.39999389648438" text="Address" />
             <TableColumn fx:id="colCustCity" prefWidth="64.79998779296875" text="City" />
             <TableColumn fx:id="colCustProvince" prefWidth="68.0" text="Province" />
-            <TableColumn fx:id="ColcustPostalCode" prefWidth="75.199951171875" text="PostalCode" />
+            <TableColumn fx:id="colcustPostalCode" prefWidth="75.199951171875" text="PostalCode" />
         </columns>
       </TableView>
       <Label layoutX="52.0" layoutY="345.0" text="Customer ID :" />
