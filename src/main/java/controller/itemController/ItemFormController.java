@@ -2,7 +2,7 @@ package controller.itemController;
 
 import javafx.event.ActionEvent;
 
-public class ItemFormController {
+public class ItemFormController  {
     public void viewOnAction(ActionEvent actionEvent) {
     }
 
