@@ -5,4 +5,6 @@ import model.CustomerDetails;
 
 public interface CustomerDetailsService {
     public ObservableList<CustomerDetails> view();
+    public void add(CustomerDetails customerDetails);
+    public void delete(String id);
 }

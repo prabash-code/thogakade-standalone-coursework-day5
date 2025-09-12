@@ -3,6 +3,7 @@ package controller.customerDetailsController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -95,16 +96,44 @@ public class CustomerDetailsFormController implements Initializable {
 
     @FXML
     void AddOnAction(ActionEvent event) {
+        CustomerDetailsService customerDetailsService = new CustomerDetailsController();
 
+        CustomerDetails customerDetails = new CustomerDetails(
+                txtId.getText(),
+                cmbTitle.getValue().toString(),
+                txtName.getText(),
+                dob.getValue().toString(),
+                Double.parseDouble(txtSalary.getText()),
+                txtAddress.getText(),
+                txtCity.getText(),
+                cmbProvince.getValue().toString(),
+                Integer.parseInt(txtPostalCode.getText())
+        );
+        customerDetailsService.add(customerDetails);
+        viewOnAction(event);
+        clearOnAction(event);
     }
 
     @FXML
     void clearOnAction(ActionEvent event) {
+        txtId.setText(null);
+        txtAddress.setText(null);
+        txtCity.setText(null);
+        txtName.setText(null);
+        txtSalary.setText(null);
+        txtPostalCode.setText(null);
+        cmbProvince.setValue(null);
+        cmbTitle.setValue(null);
+        dob.setValue(null);
 
     }
 
     @FXML
     void deleteOnAction(ActionEvent event) {
+        String id=txtId.getText();
+        CustomerDetailsService customerDetailsService=new CustomerDetailsController();
+        customerDetailsService.delete(id);
+        viewOnAction(event);
 
     }
 
@@ -116,8 +145,8 @@ public class CustomerDetailsFormController implements Initializable {
     @FXML
     void viewOnAction(ActionEvent event) {
 
-     CustomerDetailsService customerDetailsService=new CustomerDetailsController();
-     tableCustomer.setItems(customerDetailsService.view());
+        CustomerDetailsService customerDetailsService = new CustomerDetailsController();
+        tableCustomer.setItems(customerDetailsService.view());
     }
 
     @Override
