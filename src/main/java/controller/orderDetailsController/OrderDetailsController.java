@@ -51,7 +51,21 @@ public class OrderDetailsController implements OrderDetailsService{
             throw new RuntimeException(e);
         }
     }
-    public void update(OrderDetails orderDetails){}
+    public void update(OrderDetails orderDetails){
+        try {
+            Connection connection= DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("update orderdetail set OrderQTY=?,Discount=? where OrderID=? AND ItemCode=? ");
+            preparedStatement.setObject(1,orderDetails.getQty());
+            preparedStatement.setObject(2,orderDetails.getDiscount());
+            preparedStatement.setObject(3,orderDetails.getOrderId());
+            preparedStatement.setObject(4,orderDetails.getItemCode());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     public void delete(String id){}
 
 }
