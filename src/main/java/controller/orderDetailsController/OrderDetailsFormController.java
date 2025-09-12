@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.OrderDetails;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,6 +30,10 @@ public class OrderDetailsFormController implements Initializable {
     public TableColumn colQty;
 
     public void clearOnAction(ActionEvent actionEvent) {
+        txtDiscount.setText(null);
+        txtOrderQTY.setText(null);
+        txtOrderID.setText(null);
+        txtItemCode.setText(null);
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
@@ -38,6 +43,16 @@ public class OrderDetailsFormController implements Initializable {
     }
 
     public void addOnAction(ActionEvent actionEvent) {
+        OrderDetails orderDetails=new OrderDetails(
+                txtOrderID.getText(),
+                txtItemCode.getText(),
+                Integer.parseInt(txtOrderQTY.getText()),
+                Integer.parseInt(txtDiscount.getText())
+        );
+        OrderDetailsService orderDetailsService=new OrderDetailsController();
+        orderDetailsService.add(orderDetails);
+        viewOnAction(actionEvent);
+
     }
 
     public void viewOnAction(ActionEvent actionEvent) {

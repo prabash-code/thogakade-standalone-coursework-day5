@@ -1,5 +1,6 @@
 package controller.orderDetailsController;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,4 +35,23 @@ public class OrderDetailsController implements OrderDetailsService{
         }
         return orderDetailList;
     }
+
+    public void add(OrderDetails orderDetails){
+        try {
+            Connection connection= DBConnection.getInstance().getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into orderdetail(OrderID,ItemCode,OrderQTY,Discount) values(?,?,?,?);");
+            preparedStatement.setObject(1,orderDetails.getOrderId());
+            preparedStatement.setObject(2,orderDetails.getItemCode());
+            preparedStatement.setObject(3,orderDetails.getQty());
+            preparedStatement.setObject(4,orderDetails.getDiscount());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void update(OrderDetails orderDetails){}
+    public void delete(String id){}
+
 }
