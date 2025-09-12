@@ -23,7 +23,7 @@
         <columns>
           <TableColumn fx:id="colOrderID" prefWidth="75.0" text="Order ID" />
           <TableColumn fx:id="colItemCode" prefWidth="75.0" text="Item Code" />
-            <TableColumn fx:id="ColOrderID" prefWidth="75.0" text="Order QTY" />
+            <TableColumn fx:id="colQty" prefWidth="75.0" text="Order QTY" />
             <TableColumn fx:id="colDiscount" prefWidth="75.0" text="Discount" />
         </columns>
       </TableView>
