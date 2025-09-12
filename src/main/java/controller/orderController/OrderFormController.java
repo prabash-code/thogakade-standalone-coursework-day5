@@ -41,6 +41,14 @@ public class OrderFormController implements Initializable {
     }
 
     public void addOnAction(ActionEvent actionEvent) {
+        Orders orders=new Orders(
+                txtOrderId.getText(),
+                date.getValue().toString(),
+                txtCustomerId.getText()
+        );
+        OrderService orderService=new OrderController();
+        orderService.add(orders);
+        viewOnAction(actionEvent);
     }
 
     public void viewOnAction(ActionEvent actionEvent) {

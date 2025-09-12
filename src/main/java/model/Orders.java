@@ -10,6 +10,7 @@ import lombok.*;
 
 public class Orders {
     private String orderId;
-    private String custId;
     private String date;
+    private String custId;
+
 }
