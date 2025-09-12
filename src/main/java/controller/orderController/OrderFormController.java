@@ -2,6 +2,7 @@ package controller.orderController;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import db.DBConnection;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -12,6 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Orders;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class OrderFormController implements Initializable {
@@ -47,6 +50,12 @@ public class OrderFormController implements Initializable {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
+        String id=txtOrderId.getText();
+        OrderService orderService=new OrderController();
+        orderService.delete(id);
+        viewOnAction(actionEvent);
+        clearOnAction(actionEvent);
+
     }
 
     public void addOnAction(ActionEvent actionEvent) {

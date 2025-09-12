@@ -63,6 +63,15 @@ public class OrderController implements OrderService {
     }
 
     public void delete(String id) {
+        try {
+            Connection connection= DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from orders where OrderID=?");
+            preparedStatement.setObject(1,id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
