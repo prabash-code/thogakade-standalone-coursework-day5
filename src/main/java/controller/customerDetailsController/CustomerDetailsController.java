@@ -12,12 +12,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerDetailsController implements CustomerDetailsService{
+    Connection connection;
 
-@Override
+    {
+        try {
+            connection = DBConnection.getInstance().getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public ObservableList<CustomerDetails> view(){
         ObservableList<CustomerDetails> customerList= FXCollections.observableArrayList();
         try {
-            Connection connection= DBConnection.getInstance().getConnection();
+
             PreparedStatement preparedStatement = connection.prepareStatement("Select * from customer");
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
@@ -44,7 +53,7 @@ public class CustomerDetailsController implements CustomerDetailsService{
     @Override
     public void add(CustomerDetails customerDetails){
         try {
-            Connection connection=DBConnection.getInstance().getConnection();
+
             PreparedStatement preparedStatement = connection.prepareStatement("Insert into customer(CustID,CustTitle,CustName,DOB,salary,CustAddress,City,Province,PostalCode) values (?,?,?,?,?,?,?,?,?);");
 
             preparedStatement.setObject(1,customerDetails.getId());
@@ -68,7 +77,7 @@ public class CustomerDetailsController implements CustomerDetailsService{
 
 public void delete(String id){
     try {
-        Connection connection=DBConnection.getInstance().getConnection();
+
         PreparedStatement preparedStatement = connection.prepareStatement("delete from customer where CustID=?;");
         preparedStatement.setObject(1,id);
         preparedStatement.executeUpdate();
@@ -78,7 +87,7 @@ public void delete(String id){
 }
 public void update(CustomerDetails customerDetails){
     try {
-        Connection connection=DBConnection.getInstance().getConnection();
+
         PreparedStatement preparedStatement = connection.prepareStatement("update customer set CustTitle=?,CustName=?,DOB=?,salary=?,CustAddress=?,City=?,Province=?,PostalCode=? where CustID=?;");
         preparedStatement.setObject(1,customerDetails.getTitle());
         preparedStatement.setObject(2,customerDetails.getName());

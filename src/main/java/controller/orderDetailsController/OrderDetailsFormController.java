@@ -68,14 +68,15 @@ public class OrderDetailsFormController implements Initializable {
                 Integer.parseInt(txtOrderQTY.getText()),
                 Integer.parseInt(txtDiscount.getText())
         );
-        OrderDetailsService orderDetailsService=new OrderDetailsController();
+
         orderDetailsService.add(orderDetails);
         viewOnAction(actionEvent);
+        clearOnAction(actionEvent);
 
     }
 
     public void viewOnAction(ActionEvent actionEvent) {
-        OrderDetailsService orderDetailsService=new OrderDetailsController();
+
         tableOrderDetails.setItems(orderDetailsService.view());
 
     }

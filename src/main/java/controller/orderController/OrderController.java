@@ -11,11 +11,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OrderController implements OrderService {
-    ObservableList<Orders> orderList = FXCollections.observableArrayList();
+    Connection connection;
+
+    {
+        try {
+            connection = DBConnection.getInstance().getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public ObservableList<Orders> view() {
+        ObservableList<Orders> orderList = FXCollections.observableArrayList();
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from orders");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -35,7 +43,6 @@ public class OrderController implements OrderService {
     @Override
     public void add(Orders orders) {
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("insert into orders(OrderID,OrderDate,CustID) values(?,?,?)");
             preparedStatement.setObject(1, orders.getOrderId());
             preparedStatement.setObject(2, orders.getDate());
@@ -50,7 +57,6 @@ public class OrderController implements OrderService {
     @Override
     public void update(Orders orders) {
         try {
-            Connection connection=DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("update orders set CustID=?,OrderDate=? where OrderID=? ;");
             preparedStatement.setObject(1,orders.getCustId());
             preparedStatement.setObject(2,orders.getDate());
@@ -64,7 +70,6 @@ public class OrderController implements OrderService {
 
     public void delete(String id) {
         try {
-            Connection connection= DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("delete from orders where OrderID=?");
             preparedStatement.setObject(1,id);
             preparedStatement.executeUpdate();
@@ -73,5 +78,4 @@ public class OrderController implements OrderService {
             throw new RuntimeException(e);
         }
     }
-
 }

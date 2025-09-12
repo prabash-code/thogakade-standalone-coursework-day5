@@ -11,6 +11,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ItemControllrer implements ItemService{
+    Connection connection;
+    {
+        try {
+            connection = DBConnection.getInstance().getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public ObservableList<Item> view() {
@@ -27,11 +35,7 @@ public class ItemControllrer implements ItemService{
                         resultSet.getDouble("UnitPrice"),
                         resultSet.getInt("QtyOnHand")
                  ));
-
             }
-
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -41,7 +45,6 @@ public class ItemControllrer implements ItemService{
     @Override
     public void add(Item item) {
         try {
-            Connection connection=DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("insert into item (ItemCode,Description,PackSize,UnitPrice,QtyOnHand) values(?,?,?,?,?);");
             preparedStatement.setObject(1,item.getItemCode());
             preparedStatement.setObject(2,item.getDescription());
@@ -52,14 +55,11 @@ public class ItemControllrer implements ItemService{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     @Override
     public void update(Item item) {
         try {
-            Connection connection=DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("update item set Description =?,PackSize=?,UnitPrice=?,QtyOnHand=? where ItemCode=?;");
             preparedStatement.setObject(1,item.getDescription());
             preparedStatement.setObject(2,item.getPackSize());
@@ -76,7 +76,6 @@ public class ItemControllrer implements ItemService{
     @Override
     public void delete(String id) {
         try {
-            Connection connection=DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("delete from item where ItemCode=?;");
             preparedStatement.setObject(1,id);
             preparedStatement.executeUpdate();

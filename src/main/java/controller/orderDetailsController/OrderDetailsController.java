@@ -13,13 +13,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OrderDetailsController implements OrderDetailsService{
+    Connection connection;
 
+    {
+        try {
+            connection = DBConnection.getInstance().getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public ObservableList<OrderDetails> view(){
         ObservableList<OrderDetails> orderDetailList= FXCollections.observableArrayList();
 
         try {
-            Connection connection= DBConnection.getInstance().getConnection();
+
             PreparedStatement preparedStatement = connection.prepareStatement("select * from orderdetail");
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
@@ -38,7 +46,7 @@ public class OrderDetailsController implements OrderDetailsService{
 
     public void add(OrderDetails orderDetails){
         try {
-            Connection connection= DBConnection.getInstance().getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement("insert into orderdetail(OrderID,ItemCode,OrderQTY,Discount) values(?,?,?,?);");
             preparedStatement.setObject(1,orderDetails.getOrderId());
@@ -53,7 +61,7 @@ public class OrderDetailsController implements OrderDetailsService{
     }
     public void update(OrderDetails orderDetails){
         try {
-            Connection connection= DBConnection.getInstance().getConnection();
+
             PreparedStatement preparedStatement = connection.prepareStatement("update orderdetail set OrderQTY=?,Discount=? where OrderID=? AND ItemCode=? ");
             preparedStatement.setObject(1,orderDetails.getQty());
             preparedStatement.setObject(2,orderDetails.getDiscount());
@@ -68,7 +76,7 @@ public class OrderDetailsController implements OrderDetailsService{
     }
     public void delete(String id1,String id2){
         try {
-            Connection connection=DBConnection.getInstance().getConnection();
+
             PreparedStatement preparedStatement = connection.prepareStatement("delete from orderdetail where OrderID=? and ItemCode=?;");
             preparedStatement.setObject(1,id1);
             preparedStatement.setObject(2,id2);

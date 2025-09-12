@@ -94,9 +94,11 @@ public class CustomerDetailsFormController implements Initializable {
     @FXML
     private JFXTextField txtSalary;
 
+    CustomerDetailsService customerDetailsService = new CustomerDetailsController();
+
     @FXML
     void AddOnAction(ActionEvent event) {
-        CustomerDetailsService customerDetailsService = new CustomerDetailsController();
+
 
         CustomerDetails customerDetails = new CustomerDetails(
                 txtId.getText(),
@@ -130,8 +132,7 @@ public class CustomerDetailsFormController implements Initializable {
 
     @FXML
     void deleteOnAction(ActionEvent event) {
-        String id=txtId.getText();
-        CustomerDetailsService customerDetailsService=new CustomerDetailsController();
+        String id = txtId.getText();
         customerDetailsService.delete(id);
         viewOnAction(event);
         clearOnAction(event);
@@ -140,7 +141,6 @@ public class CustomerDetailsFormController implements Initializable {
 
     @FXML
     void updateOnAction(ActionEvent event) {
-        CustomerDetailsService customerDetailsService = new CustomerDetailsController();
 
         CustomerDetails customerDetails = new CustomerDetails(
                 txtId.getText(),
@@ -161,8 +161,6 @@ public class CustomerDetailsFormController implements Initializable {
 
     @FXML
     void viewOnAction(ActionEvent event) {
-
-        CustomerDetailsService customerDetailsService = new CustomerDetailsController();
         tableCustomer.setItems(customerDetailsService.view());
     }
 

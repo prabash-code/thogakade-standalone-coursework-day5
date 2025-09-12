@@ -31,14 +31,16 @@ public class ItemFormController implements Initializable {
     public JFXTextField txtQTYOnHand;
     public TextArea txtDescription;
 
+    ItemService itemService= new ItemControllrer();
+
     public void viewOnAction(ActionEvent actionEvent) {
-        ItemService itemService= new ItemControllrer();
+
         tableItem.setItems(itemService.view());
 
     }
 
     public void addOnAction(ActionEvent actionEvent) {
-        ItemControllrer itemService=new ItemControllrer();
+
         Item item=new Item(
                 txtItemCode.getText(),
                 txtDescription.getText(),
@@ -54,7 +56,7 @@ public class ItemFormController implements Initializable {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
-        ItemControllrer itemService=new ItemControllrer();
+
         Item item=new Item(
                 txtItemCode.getText(),
                 txtDescription.getText(),

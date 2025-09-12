@@ -31,6 +31,8 @@ public class OrderFormController implements Initializable {
     public JFXButton btnAdd;
     public JFXButton btnView;
 
+    OrderService orderService=new OrderController();
+
     public void clearOnAction(ActionEvent actionEvent) {
         txtCustomerId.setText(null);
         txtOrderId.setText(null);
@@ -43,7 +45,7 @@ public class OrderFormController implements Initializable {
                 date.getValue().toString(),
                 txtCustomerId.getText()
         );
-        OrderService orderService=new OrderController();
+
         orderService.update(orders);
         viewOnAction(actionEvent);
         clearOnAction(actionEvent);
@@ -51,7 +53,6 @@ public class OrderFormController implements Initializable {
 
     public void deleteOnAction(ActionEvent actionEvent) {
         String id=txtOrderId.getText();
-        OrderService orderService=new OrderController();
         orderService.delete(id);
         viewOnAction(actionEvent);
         clearOnAction(actionEvent);
@@ -64,13 +65,11 @@ public class OrderFormController implements Initializable {
                 date.getValue().toString(),
                 txtCustomerId.getText()
         );
-        OrderService orderService=new OrderController();
         orderService.add(orders);
         viewOnAction(actionEvent);
     }
 
     public void viewOnAction(ActionEvent actionEvent) {
-        OrderService orderService=new OrderController();
         tableOrder.setItems(orderService.view());
     }
 
